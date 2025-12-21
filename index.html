@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Leadership Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>GitHub Leadership Board</h1>
+            <p class="subtitle">Developer Performance Metrics</p>
+        </header>
+
+        <!-- Configuration Section -->
+        <section class="config-section">
+            <div class="config-card">
+                <h2>Configure Your Dashboard</h2>
+                <div class="input-group">
+                    <label for="github-token">GitHub Personal Access Token (optional for public repos)</label>
+                    <input type="password" id="github-token" placeholder="ghp_xxxxxxxxxxxx">
+                    <small>Required for private repos and higher rate limits. Create one at <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a></small>
+                </div>
+                <div class="input-group">
+                    <label for="github-org">Organization/User Name</label>
+                    <input type="text" id="github-org" placeholder="e.g., microsoft, facebook, your-username">
+                </div>
+                <div class="input-group">
+                    <label for="github-repo">Repository Name (optional)</label>
+                    <input type="text" id="github-repo" placeholder="Leave blank for all repos in org">
+                </div>
+                <div class="input-group">
+                    <label for="time-range">Time Range</label>
+                    <select id="time-range">
+                        <option value="7">Last 7 days</option>
+                        <option value="30" selected>Last 30 days</option>
+                        <option value="90">Last 90 days</option>
+                        <option value="365">Last year</option>
+                    </select>
+                </div>
+                <button id="load-data-btn" class="btn-primary">Load Dashboard</button>
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Fetching GitHub data...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Content -->
+        <div id="dashboard" class="hidden">
+            <!-- Top Stats Row -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Commits</div>
+                    <div class="stat-value" id="total-commits">0</div>
+                    <div class="stat-change" id="commits-change">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Pull Requests</div>
+                    <div class="stat-value" id="total-prs">0</div>
+                    <div class="stat-change" id="prs-change">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Code Reviews</div>
+                    <div class="stat-value" id="total-reviews">0</div>
+                    <div class="stat-change" id="reviews-change">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Issues Closed</div>
+                    <div class="stat-value" id="total-issues">0</div>
+                    <div class="stat-change" id="issues-change">--</div>
+                </div>
+            </section>
+
+            <!-- Leaderboard and Activity Chart -->
+            <section class="main-content">
+                <!-- Leaderboard -->
+                <div class="leaderboard-card">
+                    <h2>Top Contributors</h2>
+                    <div id="leaderboard-list" class="leaderboard-list">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Activity Chart -->
+                <div class="activity-card">
+                    <h2>Contribution Activity</h2>
+                    <canvas id="activity-chart"></canvas>
+                    <div class="languages-section">
+                        <h3>Top Languages</h3>
+                        <div id="languages-list" class="languages-list">
+                            <!-- Dynamic content will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detailed Contributors Table -->
+            <section class="contributors-table-section">
+                <div class="table-card">
+                    <h2>Detailed Contributor Stats</h2>
+                    <div class="table-container">
+                        <table id="contributors-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Contributor</th>
+                                    <th>Commits</th>
+                                    <th>PRs</th>
+                                    <th>Reviews</th>
+                                    <th>Issues</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contributors-tbody">
+                                <!-- Dynamic content will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>Powered by GitHub API • Real-time metrics • Last updated: <span id="last-update">--</span></p>
+            </footer>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="error-message hidden">
+            <div class="error-content">
+                <h3>⚠️ Error</h3>
+                <p id="error-text"></p>
+                <button onclick="document.getElementById('error-message').classList.add('hidden')" class="btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
