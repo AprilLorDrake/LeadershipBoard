@@ -107,6 +107,25 @@ If you encounter issues:
 3. Ensure the organization/user exists and is accessible
 4. Check that you haven't exceeded API rate limits
 
+## 🚀 Deploy Your Own Leadership Board
+
+Want your own real-time GitHub Leadership Board?  
+It’s easy—no coding required!
+
+**Try the live demo:**  
+[https://vercel.com/april-drakes-projects/leadership-board](https://vercel.com/april-drakes-projects/leadership-board)
+
+**To deploy your own:**
+1. **Fork or clone this repo** to your GitHub account.
+2. **Go to [Vercel](https://vercel.com/import/git)** and import your forked repo.
+3. When prompted for a framework, select **Other**.
+4. Click **Deploy**—that’s it!  
+   Vercel will give you a public URL for your own dashboard.
+
+**Customize:**  
+- Edit the Organization/User and Repository fields in the dashboard UI to track any public or private repo.
+- For private repos or higher API limits, use a GitHub Personal Access Token.
+
 ---
 
 Made with ❤️ for development teams everywhere
